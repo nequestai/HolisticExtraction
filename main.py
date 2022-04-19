@@ -117,7 +117,7 @@ for file in glob.glob("./assets/*.mov"):
                     keypoints.append(data_main)
 
                 df = pd.DataFrame(keypoints)
-                df.to_csv(output_filename + '.csv', mode='a')
+                df.to_csv(output_filename + '.csv.gz', compression='gzip', mode='a')
                 out.write(output_image)
                 bar()
 
