@@ -82,13 +82,13 @@ for file in glob.glob("./assets/*.mov"):
                                           mp_drawing.DrawingSpec(color=(245, 66, 230), thickness=2, circle_radius=2)
                                           )
 
-                if results.pose_landmarks:
+                if results.pose_world_landmarks:
                     data_main = {}
                     for i in range(len(pose_set)):
-                        results.pose_landmarks.landmark[i].x = results.pose_landmarks.landmark[i].x * image.shape[0]
-                        results.pose_landmarks.landmark[i].y = results.pose_landmarks.landmark[i].y * image.shape[1]
+                        results.pose_world_landmarks.landmark[i].x = results.pose_world_landmarks.landmark[i].x * image.shape[0]
+                        results.pose_world_landmarks.landmark[i].y = results.pose_world_landmarks.landmark[i].y * image.shape[1]
                         data_main.update(
-                            {pose_set[i]: results.pose_landmarks.landmark[i]}
+                            {pose_set[i]: results.pose_world_landmarks.landmark[i]}
                         )
                     keypoints.append(data_main)
 
@@ -117,7 +117,7 @@ for file in glob.glob("./assets/*.mov"):
                     keypoints.append(data_main)
 
                 df = pd.DataFrame(keypoints)
-                df.to_csv(output_filename + '.csv.gz', compression='gzip', mode='a')
+                df.to_csv(output_filename + '.csv.gz', compression='gzip')
                 out.write(output_image)
                 bar()
 
