@@ -85,8 +85,8 @@ for file in glob.glob("./assets/*.*"):
                 if results.pose_world_landmarks:
                     data_main = {}
                     for i in range(len(pose_set)):
-                        results.pose_world_landmarks.landmark[i].x = results.pose_world_landmarks.landmark[i].x * image.shape[0]
-                        results.pose_world_landmarks.landmark[i].y = results.pose_world_landmarks.landmark[i].y * image.shape[1]
+                        results.pose_world_landmarks.landmark[i].x = results.pose_world_landmarks.landmark[i].x
+                        results.pose_world_landmarks.landmark[i].y = results.pose_world_landmarks.landmark[i].y
                         data_main.update(
                             {pose_set[i]: results.pose_world_landmarks.landmark[i]}
                         )
