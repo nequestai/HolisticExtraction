@@ -77,7 +77,7 @@ for file in glob.glob("./assets/*.*"):
                                           )
 
                 # 4. Pose Detections
-                mp_drawing.draw_landmarks(output_image, results.pose_world_landmarks, mp_holistic.POSE_CONNECTIONS,
+                mp_drawing.draw_landmarks(output_image, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS,
                                           mp_drawing.DrawingSpec(color=(245, 117, 66), thickness=2, circle_radius=4),
                                           mp_drawing.DrawingSpec(color=(245, 66, 230), thickness=2, circle_radius=2)
                                           )
