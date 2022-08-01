@@ -27,7 +27,7 @@ left_hand = ['WRIST2', 'THUMB_CPC2', 'THUMB_MCP2', 'THUMB_IP2', 'THUMB_TIP2', 'I
                  'RING_FINGER_DIP2', 'RING_FINGER_TIP2', 'RING_FINGER_MCP2', 'PINKY_MCP2', 'PINKY_PIP2', 'PINKY_DIP2',
                  'PINKY_TIP2']
 
-for file in glob.glob("./assets/*.mov"):
+for file in glob.glob("./assets/*.*"):
     # load videos from ./assets and get dimensions
     cap = cv2.VideoCapture(file)
     width = math.floor(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
@@ -85,8 +85,8 @@ for file in glob.glob("./assets/*.mov"):
                 if results.pose_world_landmarks:
                     data_main = {}
                     for i in range(len(pose_set)):
-                        results.pose_world_landmarks.landmark[i].x = results.pose_world_landmarks.landmark[i].x * image.shape[0]
-                        results.pose_world_landmarks.landmark[i].y = results.pose_world_landmarks.landmark[i].y * image.shape[1]
+                        results.pose_world_landmarks.landmark[i].x = results.pose_world_landmarks.landmark[i].x
+                        results.pose_world_landmarks.landmark[i].y = results.pose_world_landmarks.landmark[i].y
                         data_main.update(
                             {pose_set[i]: results.pose_world_landmarks.landmark[i]}
                         )
@@ -117,7 +117,7 @@ for file in glob.glob("./assets/*.mov"):
                     keypoints.append(data_main)
 
                 df = pd.DataFrame(keypoints)
-                df.to_csv(output_filename + '.csv.gz', compression='gzip')
+                df.to_csv(output_filename + '.csv')
                 out.write(output_image)
                 bar()
 
